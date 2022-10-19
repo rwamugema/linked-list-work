@@ -120,23 +120,38 @@ void LinkedList::insertAtBeginning(int val) {
 
 		// inserting elements (At the end of the list)
 void LinkedList::insertAtEnd(int val) {
-  		// make a new node
-					  Node * new_node = new Node();
-						  new_node -> data = val;
- 							 new_node -> next = NULL;
-
- 		 // If list is empty, make the new node, the head
- 			 if (head == NULL) head = new_node;
-
- 		 // else, make the new_node the head and its next, the previous
- 		 // head
- 			 else {
-  						  tail -> next = new_node;
-   							 tail = new_node;
+  		 //  allocate node
+    Node* new_node = new Node();
+	
+    Node *last = head;
+   
+    // Put in the data
+    new_node->data = val; 
+   
+    // This new node is going to be 
+    // the last node, so make next of 
+    // it as NULL
+    new_node->next = NULL; 
+   
+    // If the Linked List is empty,
+    // then make the new node as head
+    if (head == NULL) 
+    { 
+        head = new_node; 
+        return; 
+    } 
+   
+    //  Else traverse till the last node
+    while (last->next != NULL)
+    {
+        last = last->next; 
+    }
+   
+    //  Change the next of last node
+    last->next = new_node; 
+    return; 
 }
-  		//      this->printTail();
-}
-		// loop over the list. return true if element found
+		// return true if element found
 bool LinkedList::search(int val) {
  							 Node * temp = head;
  			 while (temp != NULL) {
