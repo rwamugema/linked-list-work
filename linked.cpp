@@ -38,54 +38,54 @@ class LinkedList {
 };
 
        // default constructor. Initializing head pointer
-    LinkedList::LinkedList() {
-               head = NULL;
-               tail = NULL;
+   LinkedList::LinkedList() {
+              head = NULL;
+              tail = NULL;
   }
   
         
         //constructor that generates ransdom numbers in the list
-    LinkedList::LinkedList(int size) {
-       // Seed srand with random numbers
-             	  srand(time(0));
-  			for (int i = 0; i < size; i++)
-   	   // Add random numbers into our linked list
- 			   insertAtBeginning(rand());
+   LinkedList::LinkedList(int size) {
+      // Seed srand with random numbers
+              srand(time(0));
+  	for (int i = 0; i < size; i++)
+   	 // Add random numbers into our linked list
+ 		  insertAtBeginning(rand());
 }
-		// Copy constructor
-	LinkedList::LinkedList(const LinkedList & l1) {
+	// Copy constructor
+LinkedList::LinkedList(const LinkedList & l1) {
 					head = l1.head;
   					tail = l1.tail;
 }
 		// Desctructor
-	LinkedList::~LinkedList() {
-  				Node * current = head;
- 			 while (current != 0) {
-   				 Node * next = current -> next;
-   				 delete current;
-    			current = next;
+LinkedList::~LinkedList() {
+  		Node * current = head;
+ 		 while (current != 0) {
+   		 Node * next = current -> next;
+   		 delete current;
+    		current = next;
 }
- 				 head = NULL;
+ 		 head = NULL;
 }
-  void LinkedList::updateTail() {
-        // if head is null set the tail to null also
-            if (head == NULL) {
-                tail = NULL;
-                return;
+ void LinkedList::updateTail() {
+       // if head is null set the tail to null also
+         if (head == NULL) {
+              tail = NULL;
+              return;
  }
-                Node * temp = head;
+             Node * temp = head;
 
-        //  Else traverse till the last node
+      //  Else traverse till the last node
            while (temp -> next != NULL) {
                 temp = temp -> next;
 }
 
-       //  Assign the last node to tail
+      //  Assign the last node to tail
                  tail = temp;
                  return;
 }
 		//overload operator constructor
-	void LinkedList::operator = (const LinkedList & l) {
+void LinkedList::operator = (const LinkedList & l) {
  				 head = l.head;
  				 tail = l.tail;
 }
@@ -100,11 +100,11 @@ class LinkedList {
  				 return tail;
 }
 		// inserting elements (At start of the list)
-	void LinkedList::insertAtBeginning(int val) {
- 		 // make a new node
- 			 Node * new_node = new Node;
- 				 new_node -> data = val;
- 					 new_node -> next = NULL;
+void LinkedList::insertAtBeginning(int val) {
+ 	 // make a new node
+ 	 Node * new_node = new Node;
+ 	 new_node -> data = val;
+      new_node -> next = NULL;
 
   		// If list is empty, make the new node, the head
   			if (head == NULL) head = new_node;
@@ -119,7 +119,7 @@ class LinkedList {
 }
 
 		// inserting elements (At the end of the list)
-	void LinkedList::insertAtEnd(int val) {
+void LinkedList::insertAtEnd(int val) {
   		// make a new node
 					  Node * new_node = new Node();
 						  new_node -> data = val;
@@ -137,7 +137,7 @@ class LinkedList {
   		//      this->printTail();
 }
 		// loop over the list. return true if element found
-	bool LinkedList::search(int val) {
+bool LinkedList::search(int val) {
  							 Node * temp = head;
  			 while (temp != NULL) {
    			 if (temp -> data == val) return true;
@@ -148,7 +148,7 @@ class LinkedList {
 }
 
 		//function to remave targeted elemnt in the element
-	void LinkedList::remove(int val) {
+void LinkedList::remove(int val) {
  		 // If the head is to be deleted
  			 if (head -> data == val) {
    					 delete head;
@@ -185,7 +185,7 @@ class LinkedList {
  						 cout << "Value not found" << endl;
 }
 
-	void LinkedList::display() {
+void LinkedList::display() {
  						 Node * temp = head;
  				 while (temp != NULL) {
    						 cout << temp -> data << " ";
@@ -195,7 +195,7 @@ class LinkedList {
 }
 
 		/* Function to reverse the nodes in a linked list. */
-	void LinkedList::reverse() {
+void LinkedList::reverse() {
 				  if (head == NULL) return;
 
 					  Node * prev = NULL, * current = NULL, * next = NULL;
@@ -210,7 +210,7 @@ class LinkedList {
  				 head = prev;
 }
 			// Function to remove duplicates if there is any
-	void LinkedList::removeDuplicate() {
+void LinkedList::removeDuplicate() {
   		this -> selectionSort();
  			 // temp pointing to head
  			 Node * temp = head;
@@ -226,7 +226,7 @@ class LinkedList {
   }
 }
   //sort the list 
-	void LinkedList::selectionSort() {
+void LinkedList::selectionSort() {
  		 Node * temp = head;
 
   	// Traverse the List
@@ -315,4 +315,21 @@ int main() {
   
 }
 
+                         **time complexity of the functions**\
+  LinkedList(): O(1)
+  ~LinkedList(): O(1)
+  LinkedList(int size): O(n)
+  LinkedList(const LinkedList & l1): O(1)
+  void updateTail();
+  void insertAtBeginning(int val): O(1)
+  void insertAtEnd(int val):O(n)
+  void operator = (const LinkedList & l): O(1)
+  Node * getHead(): O(1)
+  Node * getTail(): O(n)
+  bool search(int val): O(n)
+  void remove(int val): O(n)
+  void removeDuplicate():O(n)
+  void selectionSort(): O(n^2)
+  void reverse(): O(n)
+  void display(): O(n)      
 
